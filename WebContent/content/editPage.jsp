@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="myWiki.WikiPageDAO"%>
 <%
 String pageName = request.getParameter("page").replaceAll("&", "&amp;").replaceAll("<", "&lt;");
@@ -29,11 +30,14 @@ response.setContentType("text/html;charset=UTF-8");
 <h1><%=pageName%>: <%=newPage? "Create" : "Edit"%></h1>
 <div class="content_body">
 	<form action="/myWiki/util/update.jsp" method="post" id="edit" onsubmit="return edit_submit();">
-	    <% if (newPage) { %>
-	           <textarea form="edit" name="page_content" id="content_edit"></textarea>    
-	    <% } else { %>
-		       <textarea form="edit" name="page_content" id="content_edit"><%=(new WikiPageDAO()).readPage(pageName)%></textarea>
-	    <% } %>
+        <c:choose>
+            <c:when test="<%=newPage%>">
+               <textarea form="edit" name="page_content" id="content_edit"></textarea>    
+            </c:when>
+            <c:otherwise>
+               <textarea form="edit" name="page_content" id="content_edit"><%=(new WikiPageDAO()).readPage(pageName)%></textarea>
+            </c:otherwise>
+        </c:choose>
 	    
 		<br />
 		<button>submit</button>

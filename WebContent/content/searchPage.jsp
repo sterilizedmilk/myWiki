@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="myWiki.WikiPageDTO"%>
 <%@ page import="myWiki.WikiPageDAO"%>
@@ -11,12 +12,10 @@ search for <%=keyword%>
     <div class="box_notice">
 	<%
 	ArrayList<WikiPageDTO> list = (new WikiPageDAO()).search(keyword);
-    if (list == null || list.isEmpty()) {
-        %>
-        <span>Page does not exist.</span><br/>
-        <%
-    }
     %>
+	<c:if test="<%=list == null || list.isEmpty()%>">
+        <span>Page does not exist.</span><br/>
+	</c:if>
         <a href="index.jsp?page=<%=keyword%>&mode=edit">
 	    Create page "<%=keyword%>"</a><br/>
     </div>

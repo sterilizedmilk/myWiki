@@ -1,9 +1,10 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="myWiki.WikiLogDAO"%>
-<%@page import="myWiki.WikiLogDTO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="myWiki.WikiLogDAO"%>
+<%@ page import="myWiki.WikiLogDTO"%>
+<%@ page import="java.util.ArrayList"%>
 <%
 String pageName = request.getParameter("page");
 ArrayList<WikiLogDTO> logList;
@@ -16,13 +17,11 @@ if (pageName != null) {
 %>
 <h1><%=pageName%>: Log</h1>
 <div>
-    <%
-    if (logList == null || logList.isEmpty()) {
-        %>
-        <div class="box_notice">there is no log about this page.</div>
-        <%
-    } else {
-        %>
+    <c:choose>
+        <c:when test="<%=logList == null || logList.isEmpty()%>">
+            <div class="box_notice">there is no log about this page.</div>    
+        </c:when>
+        <c:otherwise>
         <ul>
         <%
         for (WikiLogDTO log : logList) {
@@ -37,8 +36,7 @@ if (pageName != null) {
             <%
         }
         %>
-        </ul>
-        <%
-    }
-    %>
+        </ul>  
+        </c:otherwise>
+    </c:choose>
 </div>
