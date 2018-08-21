@@ -3,7 +3,7 @@ package myWiki;
 import java.util.ArrayList;
 
 public class WikiLogDAO extends WikiDAO {
-    
+
     public void recordLog(String pageName, String nickname, String logType, int diff) {
         sql = "INSERT INTO log (page_name, nickname, log_type, log_time, log_diff) VALUES(?, ?, ?, now(), ?);";
         try {
@@ -23,7 +23,7 @@ public class WikiLogDAO extends WikiDAO {
             }            
         }
     }
-    
+
     public ArrayList<WikiLogDTO> readLog() {
         sql = "SELECT * FROM log ORDER BY log_id DESC;";
         try {
@@ -46,7 +46,7 @@ public class WikiLogDAO extends WikiDAO {
         }
         return null;
     }
-    
+
     public ArrayList<WikiLogDTO> readLog(String pageName) {
         sql = "SELECT * FROM log WHERE page_name = ? ORDER BY log_id DESC;";
         try {
@@ -70,5 +70,5 @@ public class WikiLogDAO extends WikiDAO {
         }
         return null;
     }
-    
+
 }

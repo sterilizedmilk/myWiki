@@ -46,27 +46,27 @@
          */
 	    if ("login".equals(mode)) { // login
 	    %>
-	        <jsp:include page="content/loginPage.jsp"></jsp:include>
+	        <jsp:include page="content/loginPage.jsp" />
 	    <%
 	    } else if ("register".equals(mode)) { // register
 	    %>
-	        <jsp:include page="content/registerPage.jsp"></jsp:include>
+	        <jsp:include page="content/registerPage.jsp" />
 	    <%
         } else if ("log".equals(mode)) { // view log
         %>
-            <jsp:include page="content/viewLog.jsp"></jsp:include>
+            <jsp:include page="content/viewLog.jsp" />
         <%
 	    } else if (search != null) {
 	        if ((new WikiPageDAO()).isPageExist(search)) { // found exactly matching page
 	            response.sendRedirect("index.jsp?page=" + URLEncoder.encode(search, "UTF-8"));
 	        } else { // search page
 	    %>
-	        <jsp:include page="content/searchPage.jsp?search=<%=search%>"></jsp:include>
+	        <jsp:include page="content/searchPage.jsp?search=<%=search%>" />
 	    <%
 	        }
 	    } else if (pageName == null || pageName.isEmpty()) { // main page
 	    %>
-	        <jsp:include page="content/mainPage.jsp"></jsp:include>
+	        <jsp:include page="content/mainPage.jsp" />
 	    <%
 	    } else if ("edit".equals(mode)) { // edit page
 	        %>
@@ -74,7 +74,7 @@
 	        <%
 	    } else if (!(new WikiPageDAO()).isPageExist(pageName)) { // page was not found
 	        %>
-	        <jsp:include page="content/notFound.jsp"></jsp:include>
+	        <jsp:include page="content/notFound.jsp" />
 	        <%
 	    } else { // view page
 	            String content = (new WikiPageDAO()).readPage(pageName);
@@ -100,8 +100,8 @@
 	    }
 	    %>
     </div>
-	<jsp:include page="component/header.jsp"></jsp:include>
-	<jsp:include page="component/panel.jsp"></jsp:include>
-	<jsp:include page="component/footer.jsp"></jsp:include>
+	<jsp:include page="component/header.jsp" />
+	<jsp:include page="component/panel.jsp" />
+	<jsp:include page="component/footer.jsp" />
 </body>
 </html>

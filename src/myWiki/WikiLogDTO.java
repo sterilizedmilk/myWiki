@@ -9,7 +9,7 @@ public class WikiLogDTO {
     private String logType;
     private Timestamp logTime;
     private int diff;
-    
+
     public WikiLogDTO(int logId, String pageName, String nickname, String logType, Timestamp logTime, int diff) {
         super();
         this.logId = logId;

@@ -15,13 +15,13 @@ public abstract class WikiDAO {
     protected static String url = "jdbc:mysql://localhost:3306/wiki?useSSL=false&characterEncoding=utf8";
     protected static String id = "root"; // your id
     protected static String password = "password"; // your password
-    
+
     protected void init() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
         conn = DriverManager.getConnection(url, id, password);
         pstmt = conn.prepareStatement(sql);
     }
-    
+
     protected void close() throws SQLException {
         pstmt.close();
         conn.close();
