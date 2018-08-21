@@ -5,6 +5,18 @@ import java.util.ArrayList;
 
 public class WikiPageDAO extends WikiDAO {
 
+    private static WikiPageDAO dao;
+    
+    static {
+        dao = new WikiPageDAO();
+    }
+    
+    private WikiPageDAO() {}
+    
+    public static WikiPageDAO getInstance() {
+        return dao;
+    }
+    
     public boolean isPageExist(String name) {
         sql = "SELECT COUNT(*) FROM page WHERE page_name = ?;";
         try {

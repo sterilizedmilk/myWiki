@@ -8,10 +8,10 @@
 String pageName = request.getParameter("page");
 ArrayList<WikiLogDTO> logList;
 if (pageName != null) {
-    logList = (new WikiLogDAO()).readLog(pageName);
+    logList = WikiLogDAO.getInstance().readLog(pageName);
 } else {
     pageName = "All";
-    logList = (new WikiLogDAO()).readLog();
+    logList = WikiLogDAO.getInstance().readLog();
 }
 %>
 <h1><%=pageName%>: Log</h1>

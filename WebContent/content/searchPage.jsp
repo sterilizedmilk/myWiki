@@ -10,7 +10,7 @@ search for <%=keyword%>
 <div>
     <div class="box_notice">
 	<%
-	ArrayList<WikiPageDTO> list = (new WikiPageDAO()).search(keyword);
+	ArrayList<WikiPageDTO> list = WikiPageDAO.getInstance().search(keyword);
     if (list == null || list.isEmpty()) {
         %>
         <span>Page does not exist.</span><br/>

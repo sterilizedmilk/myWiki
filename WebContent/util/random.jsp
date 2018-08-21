@@ -2,4 +2,4 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="myWiki.WikiPageDAO"%>
-<% response.sendRedirect("/myWiki/index.jsp?page=" + URLEncoder.encode((new WikiPageDAO()).randomPage(), "UTF-8")); %>
+<% response.sendRedirect("/myWiki/index.jsp?page=" + URLEncoder.encode(WikiPageDAO.getInstance().randomPage(), "UTF-8")); %>

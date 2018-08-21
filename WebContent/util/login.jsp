@@ -5,7 +5,7 @@
 <%
 String nickname = request.getParameter("nickname");
 String password = request.getParameter("password");
-if ((new WikiUserDAO()).passwordCheck(nickname, password)) {
+if (WikiUserDAO.getInstance().passwordCheck(nickname, password)) {
     session.setAttribute("user", nickname);
 	%>
 	<script> alert("welcome!"); </script>

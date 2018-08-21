@@ -1,7 +1,19 @@
 package myWiki;
 
 public class WikiUserDAO extends WikiDAO{
-    
+
+    private static WikiUserDAO dao;
+
+    static {
+        dao = new WikiUserDAO();
+    }
+
+    private WikiUserDAO() {}
+
+    public static WikiUserDAO getInstance() {
+        return dao;
+    }
+
     public boolean passwordCheck(String nickname, String password) {
         sql = "SELECT COUNT(*) FROM user WHERE nickname = ? AND password = ?;";
         try {

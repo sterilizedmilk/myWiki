@@ -5,11 +5,11 @@
 <%
 String pageName = request.getParameter("page");
 String nickname = (String) session.getAttribute("user");
-int length = (new WikiPageDAO()).readPage(pageName).length();
+int length = WikiPageDAO.getInstance().readPage(pageName).length();
 if (nickname == null) {
     out.print("NOT_LOGIN");
-} else if ((new WikiPageDAO()).deletePage(pageName) > 0) {
-    (new WikiLogDAO()).recordLog(pageName, nickname, "deleted", -length);
+} else if (WikiPageDAO.getInstance().deletePage(pageName) > 0) {
+    WikiLogDAO.getInstance().recordLog(pageName, nickname, "deleted", -length);
     out.print("SUCCESS");
 } else {
     out.print("FAIL");

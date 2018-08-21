@@ -11,13 +11,13 @@ String nickname = (String) session.getAttribute("user");
 String page_content = request.getParameter("page_content");
 if (nickname == null) {
     
-} else if ((new WikiPageDAO()).isPageExist(pageName)) {
-    int oldLength = (new WikiPageDAO()).readPage(pageName).length();
-    (new WikiLogDAO()).recordLog(pageName, nickname, "edited", page_content.length() - oldLength);
-    (new WikiPageDAO()).updatePage(pageName, page_content);
+} else if (WikiPageDAO.getInstance().isPageExist(pageName)) {
+    int oldLength = WikiPageDAO.getInstance().readPage(pageName).length();
+    WikiLogDAO.getInstance().recordLog(pageName, nickname, "edited", page_content.length() - oldLength);
+    WikiPageDAO.getInstance().updatePage(pageName, page_content);
 } else {
-    (new WikiPageDAO()).createPage(new WikiPageDTO(pageName, page_content));
-    (new WikiLogDAO()).recordLog(pageName, nickname, "created", page_content.length());
+    WikiPageDAO.getInstance().createPage(new WikiPageDTO(pageName, page_content));
+    WikiLogDAO.getInstance().recordLog(pageName, nickname, "created", page_content.length());
 }
 response.sendRedirect("/myWiki/index.jsp?page=" + URLEncoder.encode(pageName, "UTF-8"));
 %>

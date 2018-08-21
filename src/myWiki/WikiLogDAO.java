@@ -4,6 +4,18 @@ import java.util.ArrayList;
 
 public class WikiLogDAO extends WikiDAO {
 
+    private static WikiLogDAO dao;
+    
+    static {
+        dao = new WikiLogDAO();
+    }
+    
+    private WikiLogDAO() {}
+    
+    public static WikiLogDAO getInstance() {
+        return dao;
+    }
+
     public void recordLog(String pageName, String nickname, String logType, int diff) {
         sql = "INSERT INTO log (page_name, nickname, log_type, log_time, log_diff) VALUES(?, ?, ?, now(), ?);";
         try {

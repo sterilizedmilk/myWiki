@@ -57,7 +57,7 @@
             <jsp:include page="content/viewLog.jsp" />
         <%
 	    } else if (search != null) {
-	        if ((new WikiPageDAO()).isPageExist(search)) { // found exactly matching page
+	        if (WikiPageDAO.getInstance().isPageExist(search)) { // found exactly matching page
 	            response.sendRedirect("index.jsp?page=" + URLEncoder.encode(search, "UTF-8"));
 	        } else { // search page
 	    %>
@@ -72,12 +72,12 @@
 	        %>
 	        <jsp:include page="content/editPage.jsp?page=<%=pageName%>"></jsp:include>
 	        <%
-	    } else if (!(new WikiPageDAO()).isPageExist(pageName)) { // page was not found
+	    } else if (!WikiPageDAO.getInstance().isPageExist(pageName)) { // page was not found
 	        %>
 	        <jsp:include page="content/notFound.jsp" />
 	        <%
 	    } else { // view page
-	            String content = (new WikiPageDAO()).readPage(pageName);
+	            String content = WikiPageDAO.getInstance().readPage(pageName);
 	    %>
                 <h1 class="heading">
                     <%=pageName.replaceAll("&", "&amp;").replaceAll("<", "&lt;")%>

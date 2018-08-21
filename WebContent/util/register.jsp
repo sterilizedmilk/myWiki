@@ -7,7 +7,7 @@ String nickname = request.getParameter("nickname");
 String password = request.getParameter("password");
 String from = request.getParameter("from");
 
-if (!(new WikiUserDAO()).nicknameDuplicateCheck(nickname)) {
+if (!WikiUserDAO.getInstance().nicknameDuplicateCheck(nickname)) {
 	%>
 	<script>
 	    alert("nickname '<%=nickname%>' is already used.");
@@ -26,7 +26,7 @@ if (!(new WikiUserDAO()).nicknameDuplicateCheck(nickname)) {
     </script>    
     <%
 } else {
-    (new WikiUserDAO()).register(nickname, password);
+    WikiUserDAO.getInstance().register(nickname, password);
     session.setAttribute("user", nickname);
 }
 response.sendRedirect("/myWiki/index.jsp?page=" + (from == null ? "" : from));

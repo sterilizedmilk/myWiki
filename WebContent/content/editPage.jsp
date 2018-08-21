@@ -3,7 +3,7 @@
 <%@ page import="myWiki.WikiPageDAO"%>
 <%
 String pageName = request.getParameter("page").replaceAll("&", "&amp;").replaceAll("<", "&lt;");
-boolean newPage = !(new WikiPageDAO()).isPageExist(pageName);
+boolean newPage = !WikiPageDAO.getInstance().isPageExist(pageName);
 if (session.getAttribute("user") == null) {
     %>
     <script>
@@ -32,7 +32,7 @@ response.setContentType("text/html;charset=UTF-8");
 	    <% if (newPage) { %>
 	           <textarea form="edit" name="page_content" id="content_edit"></textarea>    
 	    <% } else { %>
-		       <textarea form="edit" name="page_content" id="content_edit"><%=(new WikiPageDAO()).readPage(pageName)%></textarea>
+		       <textarea form="edit" name="page_content" id="content_edit"><%=WikiPageDAO.getInstance().readPage(pageName)%></textarea>
 	    <% } %>
 	    
 		<br />
