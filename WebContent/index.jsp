@@ -13,28 +13,7 @@
 	<meta charset="UTF-8">
  	<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/general.css">
-	<script>
-        function deletePage() {
-            if (confirm("are you real?")) {
-	            $.ajax({
-	                url: "util/delete.jsp?page=<%=pageName%>",
-	                type: "get",
-	                success: function(result) {
-	                    result = $.trim(result);
-	                    if(result == "SUCCESS") {
-	                        alert("Successfully deleted");
-	                        location.href = "index.jsp";
-	                    } else if (result == "NOT_LOGIN") {
-	                        alert("You have to login first!");
-	                        location.href = "index.jsp?mode=login&from<%=pageName%>";
-	                    } else {
-	                        alert("Failed to delete");
-	                    }
-	                }
-	            });
-            }
-        }
-    </script>
+
 </head>
 <body>
     <div id="content">
@@ -78,8 +57,30 @@
 	    } else { // view page
 	            String content = WikiPageDAO.getInstance().readPage(pageName);
 	    %>
+     
                 <script>
                     document.title = "<%=pageName%>";
+                    
+                    function deletePage() {
+                        if (confirm("are you real?")) {
+                            $.ajax({
+                                url: "util/delete.jsp?page=<%=pageName%>",
+                                type: "get",
+                                success: function(result) {
+                                    result = $.trim(result);
+                                    if(result == "SUCCESS") {
+                                        alert("Successfully deleted");
+                                        location.href = "index.jsp";
+                                    } else if (result == "NOT_LOGIN") {
+                                        alert("You have to login first!");
+                                        location.href = "index.jsp?mode=login&from<%=pageName%>";
+                                    } else {
+                                        alert("Failed to delete");
+                                    }
+                                }
+                            });
+                        }
+                    }
                 </script>
                 <h1 class="heading">
                     <%=pageName.replaceAll("&", "&amp;").replaceAll("<", "&lt;")%>
