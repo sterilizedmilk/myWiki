@@ -17,6 +17,8 @@ request.setCharacterEncoding("UTF-8");
 response.setContentType("text/html;charset=UTF-8");
 %>
 <script>
+    document.title = "Edit (<%=pageName%>)";
+    
     function edit_submit() {
         var pageName = document.createElement("input");
         pageName.setAttribute("type", "hidden");

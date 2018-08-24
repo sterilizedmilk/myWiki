@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <script>
+    document.title = "Login";
+    
     function requestLogin() {
 	    $("#login_form").attr("action", "/myWiki/util/login.jsp?from=<%=request.getParameter("from")%>");
 	    return true;

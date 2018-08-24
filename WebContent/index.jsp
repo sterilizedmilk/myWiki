@@ -11,7 +11,6 @@
 %>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
  	<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/general.css">
 	<script>
@@ -79,6 +78,9 @@
 	    } else { // view page
 	            String content = WikiPageDAO.getInstance().readPage(pageName);
 	    %>
+                <script>
+                    document.title = "<%=pageName%>";
+                </script>
                 <h1 class="heading">
                     <%=pageName.replaceAll("&", "&amp;").replaceAll("<", "&lt;")%>
 			    </h1>

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <% String from = request.getParameter("from"); %>
 <script>
+    document.title = "Register";
+    
     $(function() {
         $("#nickname").blur(function() {nicknameCheck(); } );
         $("#password").blur(function() {passwordCheck();} );

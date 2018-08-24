@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script>
+    document.title = "Page Not Found";
+</script>
 <%String pageName = request.getParameter("page").replaceAll("&", "&amp;").replaceAll("<", "&lt;");%>
 <h2>Page dose not exist.</h2>
 <div class="box_notice">

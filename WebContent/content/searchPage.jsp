@@ -4,6 +4,9 @@
 <%@ page import="myWiki.WikiPageDTO"%>
 <%@ page import="myWiki.WikiPageDAO"%>
 <%String keyword = request.getParameter("search").replaceAll("&", "&amp;").replaceAll("<", "&lt;");%>
+<script>
+    document.title = "Search (<%=keyword%>)";
+</script>
 <h1 class="heading" >
 search for <%=keyword%>
 </h1>

@@ -14,6 +14,10 @@ if (pageName != null) {
     logList = WikiLogDAO.getInstance().readLog();
 }
 %>
+
+<script>
+    document.title = "Log (<%=pageName%>)";
+</script>
 <h1><%=pageName%>: Log</h1>
 <div>
     <%
